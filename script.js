@@ -1,10 +1,27 @@
+createBoxes(16);
+hover();
+const btn = document.querySelector("button");
+btn.addEventListener('click', promptMe);
+
+function promptMe(){
+    var myNode = document.querySelector(".container");
+    while (myNode.firstChild) {
+    myNode.removeChild(myNode.lastChild);
+  }
+  let x = prompt("Please type how many squares in one direction you want");
+
+  parseInt(x);
+  createBoxes(x);
+  hover();
+}
 function createBoxes(numberPerRow) {
-    const cdiv = document.querySelector('.container');
-    const total = (numberPerRow * numberPerRow) + numberPerRow;
-    const mod = numberPerRow + 1;
+    var cdiv = document.querySelector('.container');
+    var total = (Math.pow(numberPerRow,2) + parseInt(numberPerRow));
+    var mod = (parseInt(numberPerRow) + 1);
   
     for (let i = 1; i < total; i++) {
       const div = document.createElement('div');
+      div.setAttribute('class', 'box');
   
       if (i % mod === 0) {
         div.style.cssText = "border: 0; height: 0; width: 100%";
@@ -14,6 +31,19 @@ function createBoxes(numberPerRow) {
   
       cdiv.appendChild(div);
     }
-  }
-  
-  createBoxes(16);
+}
+
+
+function hover(){
+    var divs = document.querySelectorAll('.box');
+
+  divs.forEach((div) =>{
+
+    div.addEventListener('mouseenter', function(e){
+        console.log("hovering");
+        div.classList.add("hovering");
+
+});
+});
+}
+ 
